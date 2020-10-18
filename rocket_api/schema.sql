@@ -1,0 +1,17 @@
+DROP TABLE IF EXISTS files;
+DROP TABLE IF EXISTS readouts;
+
+CREATE TABLE files(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  filename TEXT UNIQUE NOT NULL,
+  description TEXT,
+  version TEXT
+);
+
+CREATE TABLE readouts(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  file_id INTEGER NOT NULL,
+  timestamp INTEGER,
+  value INTEGER NOT NULL,
+  FOREIGN KEY (file_id) REFERENCES files (id)
+);
